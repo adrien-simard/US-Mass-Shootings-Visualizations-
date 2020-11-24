@@ -2,6 +2,10 @@
  
     display: block;
   }
+.container-fluid{
+  background-color: whitesmoke;
+
+}
   
   #logo {
     height:50px;
@@ -44,7 +48,7 @@
   
   #selections .col-md-4 {
     padding-top: 10px;
-    padding-bottom: 10px;
+    
   }
   
   
@@ -84,3 +88,90 @@ div.tooltip {
     left:800px;
     top:350px;
 }
+
+
+
+.bar{
+  fill: #4682b4
+}
+
+.bar:hover{
+  fill: #17bf3c
+}
+  
+
+.axis{
+  font-family: arial;
+  font-size: 12px
+}
+
+.axis path,
+.axis line
+  {fill: none;
+  shape-rendering: crispEdges;
+  }
+
+.x.axis path
+  {display: none}
+
+.y.axis text
+  {fill: #000}
+
+
+  span
+    {color: #d11515}
+
+    .bar {
+      fill: #80cbc4;
+    }
+    
+    text {
+      font-size: 12px;
+      fill: black;
+    }
+    
+    path {
+      stroke: gray;
+    }
+    
+    line {
+      stroke: gray;
+    }
+    
+    line#limit {
+      stroke: #FED966;
+      stroke-width: 3;
+      stroke-dasharray: 3 6;
+    }
+    
+    .grid path {
+      stroke-width: 0;
+    }
+    
+    .grid .tick line {
+      stroke: #9FAAAE;
+      stroke-opacity: 0.3;
+    }
+    
+    text.divergence {
+      font-size: 12px;
+      fill: #2F4A6D;
+    }
+    
+    text.value {
+      font-size: 12px;
+    }
+    
+    text.title {
+      font-size: 22px;
+      font-weight: 600;
+    }
+    
+    text.label {
+      font-size: 12px;
+      font-weight: 400;
+    }
+    
+    text.source {
+      font-size: 10px;
+    }

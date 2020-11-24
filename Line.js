@@ -1,8 +1,4 @@
-/*
-*    main.js
-*    Mastering Data Visualization with D3.js
-*    Project 3 - CoinStats
-*/
+
 
 const extractData2 = data => {
     const years = {}
@@ -23,12 +19,21 @@ const extractData2 = data => {
 	return Object.values(years)
 }
 const MARGIN = { LEFT: 100, RIGHT: 100, TOP: 50, BOTTOM: 100 }
-const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
+const WIDTH = 800 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 400 - MARGIN.TOP - MARGIN.BOTTOM
 
 const svg = d3.select("#chart-area").append("svg")
   .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
   .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
+
+  svg.append("text")
+	.attr("x", (WIDTH / 2))             
+	.attr("y", 100- (MARGIN.TOP / 2))
+	.attr("text-anchor", "middle")  
+	.style("font-size", "20px")
+	.style("font-familly", "arial")
+	.text("Victimes des Tueries");
+
 
 const g = svg.append("g")
   .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
@@ -48,7 +53,7 @@ g.append("path")
 	.attr("class", "y axisLabel")
 	.attr("transform", "rotate(-90)")
 	.attr("y", -60)
-	.attr("x", -170)
+	.attr("x", -130)
 	.attr("font-size", "20px")
 	.attr("text-anchor", "middle")
 	
@@ -62,6 +67,7 @@ const xLabel = g.append("text")
 	.attr("text-anchor", "middle")
 	.text("Year")
 
+	
 const format= d3.format("")
 // scales
 const x = d3.scaleLinear().range([0, WIDTH])
