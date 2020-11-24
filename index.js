@@ -1,6 +1,6 @@
 const extractData = data => {
     const states = {}
-
+    
     data.forEach(crime => {
         const stateName = crime.city.match(/, (.*)$/)[1]
         const state = stateName === 'D.C.' ? 'District of Columbia' : stateName
@@ -17,14 +17,32 @@ const extractData = data => {
             injured: +crime.injured
         }
     })
-
-    return [states, data.columns]
+    
+    const cities  = []
+    data.forEach(crime => {
+        
+        cities.push(
+            {
+                name: crime.city,
+                lat: +crime.latitude,
+                lon : +crime.longitude,
+                fatalities: crime.fatalities,
+                injured: crime.injured,
+                date: crime.date
+            }
+        )
+        })
+    console.log(cities)
+    return [states,cities]
 }
 
-const display = (states, geoJson) => {
+    
+
+
+const display = (states, geoJson,cities) => {
     //Width and height of map
-    const width = 960
-    const height = 500
+    const width = 940
+    const height = 600
 
     // D3 Projection
     const projection = d3.geoAlbersUsa()
@@ -85,11 +103,32 @@ const display = (states, geoJson) => {
         .style("stroke", "#fff")
         .style("stroke-width", "1")
         .style("fill", d => color(d.properties.injured | 0))
+    console.log(data)
+
+    dt = cities
+    svg.selectAll("circle")
+    .data(dt)
+    .enter()
+    .append("circle")
+    .attr("cx",function(d) {
+		return projection([d.lon, d.lat])[0];
+	})
+    .attr("cy", function(d) {
+		return projection([d.lon, d.lat])[1];
+	})
+	.attr("r", function(d) {
+		return Math.sqrt(d.fatalities) * 4;
+    })
+	.style("fill", "rgb(217,91,67)")	
+	.style("opacity", 0.85)
+
+
+
 }
 
 d3.csv('Mass-Shootings-1982-2020.csv')
     .then(extractData)
-    .then(([states]) => d3
+    .then(([states,cities]) => d3
         .json("us-states.json")
-        .then(geoJson => display(states, geoJson))
+        .then(geoJson => display(states, geoJson,cities))
     )

@@ -1,0 +1,86 @@
+#chart-area svg {
+ 
+    display: block;
+  }
+  
+  #logo {
+    height:50px;
+  }
+  
+  
+  
+  .axis {
+    font: 10px sans-serif;
+  }
+  
+  .axis path, .axis line {
+    fill: none;
+    stroke: #D4D8DA;
+    stroke-width: 2px;
+    shape-rendering: crispEdges;
+  }
+  
+  .line {
+    fill: none;
+    stroke-width: 2px;
+  }
+  
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+  
+  .focus circle {
+    fill: #F1F3F3;
+    stroke: #777;
+    stroke-width: 3px;
+  }
+    
+  .hover-line {
+    stroke: #777;
+    stroke-width: 2px;
+    stroke-dasharray: 3,3;
+  }
+  
+  #selections .col-md-4 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  
+  .line {
+    fill: none;
+    stroke-width: 3px;
+    stroke: steelblue;
+  }
+
+/* On mouse hover, lighten state color */
+path.state:hover {
+    fill-opacity: .7;
+}
+
+/* Style for Custom Tooltip */
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 60px;
+    height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: white;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Legend Font Style */
+#map {
+    font: 11px sans-serif;
+}
+
+/* Legend Position Style */
+.legend {
+    position:absolute;
+    left:800px;
+    top:350px;
+}
