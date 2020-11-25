@@ -1,67 +1,81 @@
+body {
+  width: 100%;
+}
+
+section#charts > div, section#info > div {
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
+  padding: 5px;
+}
+
+svg#chart-area, svg#map {
+  /*position: relative;*/
+  width: 100%;
+  /*padding-bottom: 100%; !* aspect ratio *!*/
+  /*vertical-align: top;*/
+}
+
+
 #chart-area svg {
- 
     display: block;
-  }
+}
+
 .container-fluid{
   background-color: whitesmoke;
 
 }
-  
+
   #logo {
     height:50px;
   }
-  
-  
-  
+
+
+
   .axis {
     font: 10px sans-serif;
   }
-  
+
   .axis path, .axis line {
     fill: none;
     stroke: #D4D8DA;
     stroke-width: 2px;
     shape-rendering: crispEdges;
   }
-  
+
   .line {
     fill: none;
     stroke-width: 2px;
   }
-  
+
   .overlay {
     fill: none;
     pointer-events: all;
   }
-  
+
   .focus circle {
     fill: #F1F3F3;
     stroke: #777;
     stroke-width: 3px;
   }
-    
+
   .hover-line {
     stroke: #777;
     stroke-width: 2px;
     stroke-dasharray: 3,3;
   }
-  
+
   #selections .col-md-4 {
     padding-top: 10px;
-    
+
   }
-  
-  
+
+
   .line {
     fill: none;
     stroke-width: 3px;
     stroke: steelblue;
   }
 
-/* On mouse hover, lighten state color */
-path.state:hover {
-    fill-opacity: .7;
-}
 
 /* Style for Custom Tooltip */
 div.tooltip {
@@ -82,6 +96,49 @@ div.tooltip {
     font: 11px sans-serif;
 }
 
+#map .tooltip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  opacity: 0;
+  padding: 10px;
+}
+
+#map .tooltip.opened {
+  opacity: 90%;
+}
+
+#map .tooltip td {
+  padding: 0 10px;
+}
+
+#map .tooltip td.tooltip-info-label {
+  text-align: left;
+}
+
+/* On mouse hover, lighten state color */
+#map path.state:hover {
+  fill-opacity: 70%;
+  transition: 0.1s fill-opacity ease-in-out;
+}
+
+#map path.state:hover {
+  fill-opacity: 70%;
+}
+
+#map circle.city {
+  opacity: 85%;
+  transition: 0.1s opacity ease-in-out;
+}
+
+#map circle.city:hover {
+  opacity: 95%;
+  fill: tomato;
+}
+
 /* Legend Position Style */
 .legend {
     position:absolute;
@@ -98,7 +155,7 @@ div.tooltip {
 .bar:hover{
   fill: #17bf3c
 }
-  
+
 
 .axis{
   font-family: arial;
@@ -124,54 +181,54 @@ div.tooltip {
     .bar {
       fill: #80cbc4;
     }
-    
+
     text {
       font-size: 12px;
       fill: black;
     }
-    
+
     path {
       stroke: gray;
     }
-    
+
     line {
       stroke: gray;
     }
-    
+
     line#limit {
       stroke: #FED966;
       stroke-width: 3;
       stroke-dasharray: 3 6;
     }
-    
+
     .grid path {
       stroke-width: 0;
     }
-    
+
     .grid .tick line {
       stroke: #9FAAAE;
       stroke-opacity: 0.3;
     }
-    
+
     text.divergence {
       font-size: 12px;
       fill: #2F4A6D;
     }
-    
+
     text.value {
       font-size: 12px;
     }
-    
+
     text.title {
       font-size: 22px;
       font-weight: 600;
     }
-    
+
     text.label {
       font-size: 12px;
       font-weight: 400;
     }
-    
+
     text.source {
       font-size: 10px;
     }

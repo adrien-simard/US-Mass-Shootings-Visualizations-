@@ -18,18 +18,24 @@ const extractData2 = data => {
 
 	return Object.values(years)
 }
-const MARGIN = { LEFT: 100, RIGHT: 100, TOP: 50, BOTTOM: 100 }
-const WIDTH = 800 - MARGIN.LEFT - MARGIN.RIGHT
-const HEIGHT = 400 - MARGIN.TOP - MARGIN.BOTTOM
 
-const svg = d3.select("#chart-area").append("svg")
-  .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
-  .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
+const boxWidth = 800
+const boxHeight = boxWidth / 2
+const MARGIN = { LEFT: 70, RIGHT: 20, TOP: 50, BOTTOM: 50 }
+const WIDTH = boxWidth - MARGIN.LEFT - MARGIN.RIGHT
+const HEIGHT = boxHeight - MARGIN.TOP - MARGIN.BOTTOM
+
+const svg = d3.select("#chart-area")
+	.append("svg")
+    // .attr("width", boxWidth)
+    // .attr("height", boxHeight)
+	.attr("viewBox", `0 0 ${boxWidth} ${boxHeight}`)
+	.attr("preserveAspectRatio", "xMinYMin meet")
 
   svg.append("text")
-	.attr("x", (WIDTH / 2))             
+	.attr("x", (WIDTH / 2))
 	.attr("y", 100- (MARGIN.TOP / 2))
-	.attr("text-anchor", "middle")  
+	.attr("text-anchor", "middle")
 	.style("font-size", "20px")
 	.style("font-familly", "arial")
 	.text("Victimes des Tueries");
@@ -56,7 +62,7 @@ g.append("path")
 	.attr("x", -130)
 	.attr("font-size", "20px")
 	.attr("text-anchor", "middle")
-	
+
 
 // axis labels
 const xLabel = g.append("text")
@@ -67,7 +73,7 @@ const xLabel = g.append("text")
 	.attr("text-anchor", "middle")
 	.text("Year")
 
-	
+
 const format= d3.format("")
 // scales
 const x = d3.scaleLinear().range([0, WIDTH])
@@ -92,27 +98,27 @@ d3.csv("Mass-Shootings-1982-2020.csv").then(extractData2).then(data => {
 	// run the visualization for the first time
 	update()
 	$("#coin-select").on("change", update)
-	
-	
+
+
 
 function update() {
 	const t = d3.transition().duration(1000)
 	console.log("test")
 	// filter data based on selections
 	const choice = String($("#coin-select").val())
-	
-	
+
+
 	yLabel.transition(t).text(choice)
 
 	// update scales
 	x.domain(d3.extent(data, d => d.year))
 	y.domain([
-		d3.min(data, d => d[choice]), 
+		d3.min(data, d => d[choice]),
 		d3.max(data, d => d[choice])
 	])
 
-	
-	
+
+
 
 	// update axes
 	xAxisCall.scale(x)
@@ -158,7 +164,7 @@ function update() {
 		focus.select(".x-hover-line").attr("y2", HEIGHT - y(d[choice]))
 		focus.select(".y-hover-line").attr("x2", -x(d.year))
 	}
-	
+
 	/******************************** Tooltip Code ********************************/
 
 	// Path generator
@@ -170,7 +176,7 @@ function update() {
 	g.select(".line")
 		.transition(t)
 		.attr("d", line(data))
-	
+
 }
 })
 

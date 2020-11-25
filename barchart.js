@@ -3,15 +3,14 @@ const weaponData = data => {
     data.forEach(({year,injured,weapons_obtained_legally}) => {
         if(weapons_obtained_legally in weapons){
             weapons[weapons_obtained_legally].number += +1
-		
 
-        }else if (weapons_obtained_legally.includes("Yes") )
+
+        } else if (weapons_obtained_legally.includes("Yes") )
         {weapons[weapons_obtained_legally]={
             number: 1,
             legal: "Yes"
         }
-    }
-    else if(weapons_obtained_legally.includes("No")){
+    } else if(weapons_obtained_legally.includes("No")){
         weapons[weapons_obtained_legally]={
             number: 1,
             legal: "No"
@@ -35,7 +34,7 @@ const weaponData = data => {
             number: number,
             legal: legal
         }}})
-   
+
 
 
 
@@ -56,14 +55,14 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                 datasets:[{
                     label:'Population',
                     data: data.map(d=>Math.round(d.number/s*100)),
-                    backgroundColor:["#AED6F1","#DAF7A6","#FFC300"],
-                    
+                    backgroundColor:["#2F4F4F","#C0D9D9","#96CDCD"],
+
                     borderWidth:1,
                     borderColor:'#000',
                     hoverBorderWidth:4,
                     hoverBorderColor:"Black",
                 }]
-                
+
 
 
             },
@@ -78,7 +77,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                     display:true,
                     position:'right',
                     labels:{
-                        fontColor:"Black" 
+                        fontColor:"Black"
                     }
                 },
                 layout:{
@@ -92,8 +91,8 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                 tooltips:{
                     enabled:true
                 }
-            
-                
+
+
 
             }
         });
