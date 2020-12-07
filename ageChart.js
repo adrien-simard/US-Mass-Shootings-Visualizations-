@@ -8,23 +8,23 @@ const extractAge = data => {
             ages[age_of_shooter].crime +=1
 
         }else{
-            if(Number(age_of_shooter)<18){
+            if(Number(age_of_shooter)<21){
                 ages[age_of_shooter]={
                     injured:+injured,
                     fatalities:+fatalities,
                     total: Number(injured)+Number(fatalities),
-                    age_of_shooter:"-18",
+                    age_of_shooter:"-21",
                     crime: 1
             }
             
         }
        
-        else if(Number(age_of_shooter)<25 && Number(age_of_shooter)>18){
+        else if(Number(age_of_shooter)<25 && Number(age_of_shooter)>=21){
             ages[age_of_shooter]={
                 injured:+injured,
                 fatalities:+fatalities,
                 total: Number(injured)+Number(fatalities),
-                age_of_shooter:"18-25",
+                age_of_shooter:"21-25",
                 crime: 1}
             }
         else if(Number(age_of_shooter)<=30 && Number(age_of_shooter)>25){
@@ -142,8 +142,8 @@ d3.csv('Mass-Shootings-1982-2020.csv')
        
         
         const margin = 80;
-        const width = 700 - 2 * margin;
-        const height = 500 - 2 * margin;
+        const width = 800 - 2 * margin;
+        const height = 600 - 2 * margin;
     
         const chart = svg.append('g')
           .attr('transform', `translate(${margin}, ${margin})`);
@@ -207,7 +207,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
               .transition()
               .duration(300)
               .attr('opacity', 0.6)
-              .attr('x', (a) => xScale(a.age_of_shooter) - 5)
+              .attr('x', (a) => xScale(a.age_of_shooter) - 1)
               .attr('width', xScale.bandwidth() + 10)
     
             const y = yScale(actual.crime)
@@ -222,7 +222,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
             barGroups.append('text')
               .attr('class', 'divergence')
               .attr('x', (a) => xScale(a.age_of_shooter) + xScale.bandwidth() / 2)
-              .attr('y', (a) => yScale(a.crime) + 30)
+              .attr('y', (a) => yScale(a.crime) + 15)
               .attr('fill', 'white')
               .attr('text-anchor', 'middle')
               .text((a, idx) => {
@@ -255,7 +255,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
           .append('text')
           .attr('class', 'crime')
           .attr('x', (a) => xScale(a.age_of_shooter) + xScale.bandwidth() / 2)
-          .attr('y', (a) => yScale(a.crime) + 30)
+          .attr('y', (a) => yScale(a.crime) + 15)
           .attr('text-anchor', 'middle')
           .text((a) => `${a.crime}`)
         
@@ -267,6 +267,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
           .attr('transform', 'rotate(-90)')
           .attr('text-anchor', 'middle')
           .text('Nombre Crimes')
+          
     
         svg.append('text')
           .attr('class', 'label')
@@ -280,7 +281,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
           .attr('x', width / 2 + margin)
           .attr('y', 40)
           .attr('text-anchor', 'middle')
-          .text("Nombres de crimes par tanche d'age")
+          .text("Nombres de crimes par tranche d'age")
     
        
     })

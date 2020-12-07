@@ -33,11 +33,10 @@ const svg = d3.select("#chart-area")
 	.attr("preserveAspectRatio", "xMinYMin meet")
 
   svg.append("text")
+    .attr('class', 'title')
 	.attr("x", (WIDTH / 2))
 	.attr("y", 100- (MARGIN.TOP / 2))
 	.attr("text-anchor", "middle")
-	.style("font-size", "20px")
-	.style("font-familly", "arial")
 	.text("Victimes des Tueries");
 
 

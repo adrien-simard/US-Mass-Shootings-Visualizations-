@@ -41,7 +41,9 @@ const weaponData = data => {
 
 	return Object.values(final)
 }
+
 let myChart2 = document.getElementById('piechart').getContext('2d');
+myChart2.font = '40px Oswald';
 d3.csv('Mass-Shootings-1982-2020.csv')
     .then(weaponData)
     .then(data=>{
@@ -53,13 +55,13 @@ d3.csv('Mass-Shootings-1982-2020.csv')
             data:{
                 labels: ["Inconnu","Légale","Illégale"],
                 datasets:[{
-                    label:'Population',
+                    label:'Arme',
                     data: data.map(d=>Math.round(d.number/s*100)),
-                    backgroundColor:["#2F4F4F","#C0D9D9","#96CDCD"],
+                    backgroundColor:["#DCDCDC","#C0D9D9","#216269"],
 
                     borderWidth:1,
                     borderColor:'#000',
-                    hoverBorderWidth:4,
+                    hoverBorderWidth:3,
                     hoverBorderColor:"Black",
                 }]
 
@@ -69,15 +71,18 @@ d3.csv('Mass-Shootings-1982-2020.csv')
             options:{
                 title:{
                     display: true,
-                    text:"Armes legales et illégales",
-                    fontSize : 20,
+                    text:"Armes légales et illégales",
+                    fontSize : 30,
+                    fontFamilly:"Oswald",
+                    fontColor:"Black"
 
                 },
                 legend:{
                     display:true,
-                    position:'right',
+                    position:'left',
                     labels:{
-                        fontColor:"Black"
+                        fontColor:"Black",
+                        fontFamilly:"Oswald",
                     }
                 },
                 layout:{
@@ -89,7 +94,15 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                     }
                 },
                 tooltips:{
-                    enabled:true
+                    enabled:true,
+                    callbacks:{
+                        label: function(tooltipItem, data) {
+                            var dataset = data.datasets[tooltipItem.datasetIndex]
+                            var currentValue = dataset.data[tooltipItem.index];
+                            return currentValue + "%";
+                        }
+                            
+                    }
                 }
 
 

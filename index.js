@@ -89,7 +89,7 @@ const display = (states, geoJson,cities) => {
     const color = d3.scaleSqrt()
         .domain([0, max])
         // .domain([0, (1/2)*max, max])
-        .range(['#21A7B4', '#033A3F'])
+        .range(['#C6C6C6', '#074646'])
         // .range(['#10A1AE', '#05636C', '#00262A'])
 
     //Create SVG element and append map to the SVG
@@ -101,11 +101,10 @@ const display = (states, geoJson,cities) => {
         .attr("viewBox", `0 0 ${width} ${height}`)
 
     svg.append("text")
+        .attr('class', 'title')
         .attr("x", (width / 3))
         .attr("y", 50- (20/ 2))
         .attr("text-anchor", "middle")
-        .style("font-size", "20px")
-        .style("font-familly", "arial")
         .text("Répartition des Crimes aux USA");
 
     // Append Div for tooltip to SVG
