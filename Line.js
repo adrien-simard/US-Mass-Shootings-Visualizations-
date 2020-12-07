@@ -21,7 +21,7 @@ const extractData2 = data => {
 
 const boxWidth = 800
 const boxHeight = boxWidth / 2
-const MARGIN = { LEFT: 70, RIGHT: 20, TOP: 50, BOTTOM: 50 }
+const MARGIN = { LEFT: 70, RIGHT: 40, TOP: 50, BOTTOM: 50 }
 const WIDTH = boxWidth - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = boxHeight - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -33,7 +33,7 @@ const svg = d3.select("#chart-area")
 	.attr("preserveAspectRatio", "xMinYMin meet")
 
   svg.append("text")
-    .attr('class', 'title')
+   .attr('class', 'title')
 	.attr("x", (WIDTH / 2))
 	.attr("y", 100- (MARGIN.TOP / 2))
 	.attr("text-anchor", "middle")

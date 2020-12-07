@@ -173,6 +173,50 @@ const display = (states, geoJson,cities) => {
                 .style("left", (x + tooltipXOffset) + "px")
                 .html(cityToTooltip(d))
         })
+        
+
+
+var legendText = ["+100","0"];
+
+var legend = d3.select("#map").append("svg")
+                .attr('transform', 'translate(600, -180)')
+     			.attr("width", 100)
+                .attr("height", 100)
+                
+legend.append("circle").attr("cx",10).attr("cy",10).attr("r", 10).style("fill", "rgb(217,91,67)")
+legend.append("text").attr("x", 22).attr("y", 15).text("Crimes")
+.style("font-size", "12px")
+
+legend.append("rect").attr("x", 2)
+.attr("y", 25)
+.attr("width", 15)
+.attr("height", 15)
+.style("fill", "#074646");
+legend.append("rect").attr("x", 2)
+.attr("y", 40)
+.attr("width", 15)
+.attr("height", 15)
+.style("fill", "#226765");
+legend.append("rect").attr("x", 2)
+.attr("y", 55)
+.attr("width", 15)
+.attr("height", 15)
+.style("fill", "rgb(98,131,131)");
+legend.append("rect").attr("x", 2)
+.attr("y", 70)
+.attr("width", 15)
+.attr("height", 15)
+.style("fill", '#C6C6C6')
+
+legend.append("text").attr("x", 20)
+.attr("y", 30)
+.text("+100")
+.style("font-size", "12px")
+
+legend.append("text").attr("x", 20)
+.attr("y", 85)
+.text("0")
+.style("font-size", "12px")
 
 
 
