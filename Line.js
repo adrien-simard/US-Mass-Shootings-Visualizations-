@@ -102,7 +102,6 @@ d3.csv("Mass-Shootings-1982-2020.csv").then(extractData2).then(data => {
 
 function update() {
 	const t = d3.transition().duration(1000)
-	console.log("test")
 	// filter data based on selections
 	const choice = String($("#coin-select").val())
 
