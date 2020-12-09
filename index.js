@@ -31,7 +31,7 @@ const extractData = data => {
 }
 
 const stateToTooltip = ({name, fatalities=0, injured=0, crimes=[]}) => `
-    <h4>${name}</h4>
+    <h6>${name}</h6>
     <table>
         <tbody>
             <tr>
@@ -51,7 +51,7 @@ const stateToTooltip = ({name, fatalities=0, injured=0, crimes=[]}) => `
 `
 
 const cityToTooltip = ({name, fatalities=0, injured=0, date}) => `
-    <h4>${name}</h4>
+    <h6>${name}</h6>
     <table>
         <tbody>
             <tr>
