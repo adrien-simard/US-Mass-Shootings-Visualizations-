@@ -16,7 +16,8 @@ const extractData = data => {
             crimes: [crime],
             fatalities: +crime.fatalities,
             injured: +crime.injured,
-            total: +crime.fatalities + +crime.injured
+            total: +crime.fatalities + +crime.injured,
+            
         }
     })
 
@@ -27,7 +28,7 @@ const extractData = data => {
         lon : +crime.longitude,
         fatalities: crime.fatalities,
         injured: crime.injured,
-        date: crime.date,
+        date: parseTime(crime.date),
         total: +crime.fatalities + +crime.injured
     }))
 
@@ -151,6 +152,9 @@ const tooltip = mapDiv
     .text("0")
     .style("font-size", "12px")
 
+const parseTime = d3.timeParse("%m/%d/%Y")
+const formatTime = d3.timeFormat("%m/%d/%Y")
+
 //////////////////////////////////////////////////////////////////////////
 d3.csv('Mass-Shootings-1982-2020.csv')
     .then(extractData)
@@ -177,18 +181,17 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                 })
 
 
-            update()
-            update()
+            
             $("#map-select").on("change", update)
             // add jQuery UI slider
             $("#date-slider").slider({
                 range: true,
-                max: parseTime("31/10/2017").getTime(),
-                min: parseTime("12/5/2013").getTime(),
-                step: 86400000, // one day
+                max: parseTime("12/10/2020").getTime(),
+                min: parseTime("01/01/1982").getTime(),
+                step: 31557600000, // one month
                 values: [
-                    parseTime("12/5/2013").getTime(),
-                    parseTime("31/10/2017").getTime()
+                    parseTime("01/01/1982").getTime(),
+                    parseTime("12/10/2020").getTime()
                 ],
                 slide: (event, ui) => {
                     $("#dateLabel1").text(formatTime(new Date(ui.values[0])))
@@ -196,13 +199,17 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                     update()
                 }
             })
-
+            update()
+            update()
             function update(){
-                const t = d3.transition().duration(1000)
+                const t = d3.transition().duration(500)
                 
                 // filter data based on selections
                 const choice = String($("#map-select").val())
-                console.log(choice)
+                const sliderValues = $("#date-slider").slider("values")
+                const citiesTimeFiltered = cities.filter(d => {
+                    return ((d.date >= sliderValues[0]) && (d.date <= sliderValues[1]))
+                })
                 
 
                 
@@ -249,16 +256,12 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                
                 
                 var circle = svg2.selectAll("circle.city")
-                .data(cities);
+                .data(citiesTimeFiltered);
+                circle.exit().remove();//remove unneeded circles
 
-                
-
-                
                 circle.enter()
                     .append("circle")
                     .classed("city", true)
-                    .attr("cx",d => projection([d.lon, d.lat])[0])
-                    .attr("cy", d => projection([d.lon, d.lat])[1])
                     .on("mouseover", () => tooltip.classed("opened", true))
                     .on("mouseout", () => tooltip.classed("opened", false))
                     .on("mousemove", (d) => {
@@ -269,22 +272,19 @@ d3.csv('Mass-Shootings-1982-2020.csv')
                             .html(cityToTooltip(d))
                     });
                     
+                    circle.transition(t).attr("cx",d => projection([d.lon, d.lat])[0])
+                    .attr("cy", d => projection([d.lon, d.lat])[1])
+                  
 
                 circle.transition(t)
                     .attr("r", d => Math.sqrt(d[choice]) * 4)
                     .style("fill", "rgb(217,91,67)")
                     
 
-                
-
         
 
             }
      
-    
-
-
-
 
         }
             )

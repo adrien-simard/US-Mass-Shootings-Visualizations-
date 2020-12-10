@@ -19,9 +19,9 @@ const extractData2 = data => {
 	return Object.values(years)
 }
 
-const boxWidth = 800
+const boxWidth = 850
 const boxHeight = boxWidth / 2
-const MARGIN = { LEFT: 70, RIGHT: 40, TOP: 50, BOTTOM: 50 }
+const MARGIN = { LEFT: 80, RIGHT: 40, TOP: 50, BOTTOM: 60 }
 const WIDTH = boxWidth - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = boxHeight - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -35,7 +35,7 @@ const svg = d3.select("#chart-area")
   svg.append("text")
    .attr('class', 'title')
 	.attr("x", (WIDTH / 2))
-	.attr("y", 100- (MARGIN.TOP / 2))
+	.attr("y", 100-(MARGIN.TOP / 2))
 	.attr("text-anchor", "middle")
 	.text("Victimes des Tueries");
 
@@ -70,7 +70,7 @@ const xLabel = g.append("text")
 	.attr("x", WIDTH / 2)
 	.attr("font-size", "20px")
 	.attr("text-anchor", "middle")
-	.text("Year")
+	.text("Année")
 
 
 const format= d3.format("")
@@ -91,7 +91,7 @@ const yAxis = g.append("g")
 	.attr("class", "y axis")
 
 d3.csv("Mass-Shootings-1982-2020.csv").then(extractData2).then(data => {
-	console.log('object :>> ', data);
+	
 
 
 	// run the visualization for the first time
@@ -105,8 +105,13 @@ function update() {
 	// filter data based on selections
 	const choice = String($("#coin-select").val())
 
-
-	yLabel.transition(t).text(choice)
+	if(choice=="fatalities"){
+		yLabel.transition(t).text("Morts")
+	}
+	else if(choice=="injured"){
+		yLabel.transition(t).text("Blessés")
+	}
+	else{yLabel.transition(t).text(choice)}
 
 	// update scales
 	x.domain(d3.extent(data, d => d.year))

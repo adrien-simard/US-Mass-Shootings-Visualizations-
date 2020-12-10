@@ -142,8 +142,8 @@ d3.csv('Mass-Shootings-1982-2020.csv')
        
         
         const margin = 80;
-        const width = 800 - 2 * margin;
-        const height = 600 - 2 * margin;
+        const width = 900 - 2 * margin;
+        const height = 800 - 2 * margin;
     
         const chart = svg.append('g')
           .attr('transform', `translate(${margin}, ${margin})`);
@@ -258,6 +258,7 @@ d3.csv('Mass-Shootings-1982-2020.csv')
           .attr('y', (a) => yScale(a.crime) + 15)
           .attr('text-anchor', 'middle')
           .text((a) => `${a.crime}`)
+          .attr('color','white')
         
         svg
           .append('text')
