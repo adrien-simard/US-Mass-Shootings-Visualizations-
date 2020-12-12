@@ -35,7 +35,9 @@
             ...crime,
             name: crime.city,
             date: parseTime(crime.date),
-            total: +crime.fatalities + +crime.injured
+            total: +crime.fatalities + +crime.injured,
+            year: crime.year,
+            gender: crime.gender
         }))
 
         return [states,cities]
@@ -61,13 +63,13 @@
         </table>
     `
 
-    const cityToTooltip = ({name, fatalities=0, injured=0, date}) => `
+    const cityToTooltip = ({name, fatalities=0, injured=0, year,gender}) => `
         <h6>${name}</h6>
         <table>
             <tbody>
                 <tr>
                     <td class="tooltip-info-label">Date</td>
-                    <td class="tooltip-info-value">${date}</td>    
+                    <td class="tooltip-info-value">${year}</td>    
                 </tr>
                 <tr>            
                     <td class="tooltip-info-label">Blessés</td>
@@ -76,6 +78,10 @@
                 <tr>            
                     <td class="tooltip-info-label">Morts</td>
                     <td class="tooltip-info-value">${fatalities}</td>                
+                </tr>
+                <tr>            
+                    <td class="tooltip-info-label">Genre</td>
+                    <td class="tooltip-info-value">${gender}</td>                
                 </tr>
             </tbody>
         </table>
