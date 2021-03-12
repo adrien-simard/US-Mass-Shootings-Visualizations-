@@ -1,5 +1,5 @@
 # Mass shooting
-
+Some visualisations with D3.js and a Dashboard
 Enjoy our dashboard: https://adrien-simard.github.io/US-Mass-Shootings-Visualizations-/
 
 - [Info](https://www.motherjones.com/politics/2012/12/mass-shootings-mother-jones-full-data/)
